@@ -46,6 +46,12 @@ async function main() {
   const addresses = [owner.address, tipper.address, buyMeACoffee.address];
   console.log("== start ==");
   await printBalances(addresses);
+
+  // Buy thw owner a few coffees
+  const tip = {value: hre.ethers.utils.parseEther("1")};
+  await buyMeACoffee.connect(tipper).buyCoffee("Carolina", "You're the best!", tip);
+  await buyMeACoffee.connect(tipper2).buyCoffee("Vitto", "Amazing teacher :)", tip);
+  await buyMeACoffee.connect(tipper3).buyCoffee("Kay", "I love my Proof of Knowledge NFT", tip);
 }
 
 

@@ -47,11 +47,27 @@ async function main() {
   console.log("== start ==");
   await printBalances(addresses);
 
-  // Buy thw owner a few coffees
+  // Buy the owner a few coffees
   const tip = {value: hre.ethers.utils.parseEther("1")};
   await buyMeACoffee.connect(tipper).buyCoffee("Carolina", "You're the best!", tip);
   await buyMeACoffee.connect(tipper2).buyCoffee("Vitto", "Amazing teacher :)", tip);
   await buyMeACoffee.connect(tipper3).buyCoffee("Kay", "I love my Proof of Knowledge NFT", tip);
+
+  // Check balances after coffee purchase.
+  console.log("== bought coffee ==");
+  await printBalances(addresses);
+
+  // Withdraw funds.
+  await buyMeACoffee.connect(owner).withDrawTips();
+
+  // check the balance after withdraw.
+  console.log("== withdrawTips ==");
+  await printBalances(addresses);
+
+  // read all the memos left for thw owner.
+  console.log("== memos ==");
+  const memos = await buyMeACoffee.getMemos();
+  await printMemos(memos);
 }
 
 

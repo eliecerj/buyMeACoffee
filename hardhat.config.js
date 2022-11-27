@@ -1,5 +1,5 @@
 require("@nomicfoundation/hardhat-toolbox");
-require("@nomicfoundation/hardhat-ethers");
+// require("@nomicfoundation/hardhat-ethers");
 require("dotenv").config();
 
 const GOERLI_URL = process.env.GOERLI_URL;
@@ -11,7 +11,7 @@ module.exports = {
   networks: {
     goerli: {
       url: GOERLI_URL,
-      account: [PRIVATE_KEY]
+      accounts: [PRIVATE_KEY]
     }
   }
 };
